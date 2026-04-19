@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Initium — Mentions légales</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .legal { max-width: 800px; margin: 0 auto; }
+    .legal h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      margin-top: 48px;
+      color: var(--noir-encre);
+    }
+    .legal h3:first-child { margin-top: 0; }
+    .legal p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--gris-cendre);
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot" id="cursor"></div>
+
+  <nav class="site-nav" id="nav">
+    <a href="index.html" class="site-nav__logo">Initium</a>
+    <ul class="site-nav__links">
+      <li><a href="philosophie.html">Notre philosophie</a></li>
+      <li><a href="services.html">Nos services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" style="min-height: 50vh;">
+    <div class="pattern-layer pat-grid" style="inset: 0; opacity: 0.3;" data-parallax="0.02"></div>
+
+    <div class="section__inner" style="text-align: center; padding: 0 48px; position: relative; z-index: 2;">
+      <p class="t-intertitre mb-32 reveal">Informations juridiques</p>
+      <h1 class="t-lapidaire t-lapidaire--lg mb-32 reveal reveal--delay-1" style="max-width: 800px; margin: 0 auto;">Mentions légales</h1>
+      <div class="filet mb-32 reveal reveal--delay-2" style="margin: 0 auto;"></div>
+    </div>
+  </section>
+
+  <div class="greek-border"></div>
+
+  <!-- Contenu juridique -->
+  <section class="section section--blanc">
+    <div class="legal">
+      <h3>Éditeur du site</h3>
+      <p>Initium — Agence de marketing culturel<br>
+      Adresse : [adresse à compléter]<br>
+      Email : contact@initium-agency.com<br>
+      SIRET : [à compléter]<br>
+      Directeurs de la publication : Farah [nom] et Jad [nom]</p>
+
+      <h3>Hébergement</h3>
+      <p>Ce site est hébergé par GitHub Pages — GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA.</p>
+
+      <h3>Propriété intellectuelle</h3>
+      <p>L'ensemble du contenu de ce site (textes, images, illustrations, graphismes, logo, icônes) est la propriété exclusive d'Initium, sauf mention contraire. Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sauf autorisation écrite préalable.</p>
+
+      <h3>Données personnelles</h3>
+      <p>Initium s'engage à respecter la vie privée des utilisateurs de son site. Les données personnelles éventuellement collectées (via formulaire de contact ou prise de rendez-vous Calendly) sont utilisées uniquement dans le cadre de la relation commerciale et ne sont jamais transmises à des tiers.</p>
+      <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification et de suppression de vos données personnelles. Pour exercer ce droit, contactez-nous à contact@initium-agency.com.</p>
+
+      <h3>Cookies</h3>
+      <p>Ce site n'utilise pas de cookies de traçage. Aucun outil d'analyse tiers n'est intégré.</p>
+
+      <h3>Responsabilité</h3>
+      <p>Initium ne saurait être tenue responsable des erreurs, d'une absence de disponibilité des informations et/ou de la présence de virus sur son site.</p>
+
+      <h3>Droit applicable</h3>
+      <p>Les présentes mentions légales sont soumises au droit français. En cas de litige, les tribunaux français seront seuls compétents.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="greek-border"></div>
+  <footer class="site-footer">
+    <div>&copy; 2026 Initium</div>
+    <ul class="site-footer__links">
+      <li><a href="philosophie.html">Philosophie</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="mentions-legales.html">Mentions légales</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    if (cursor && window.innerWidth > 768) {
+      document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+      document.querySelectorAll('a, .btn').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('cursor-dot--hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-dot--hover'));
+      });
+    }
+    window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('site-nav--scrolled', window.scrollY > 80); });
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('reveal--visible'); observer.unobserve(entry.target); } });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
