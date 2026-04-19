@@ -44,7 +44,7 @@
       <div class="hero__figure">
         <!-- Cadre pattern derrière la figure -->
         <div class="hero__figure-frame hero__figure-frame--offset pat-dots" style="opacity: 0.5;" data-parallax="0.03"></div>
-        <img src="img/venus-selfie.png" alt="Vénus au selfie — statue classique avec smartphone" data-parallax="0.05">
+        <img src="img/venus-selfie.png" alt="Vénus au selfie — statue classique avec smartphone" data-parallax="0.15" data-scale-scroll>
       </div>
     </div>
   </section>
@@ -77,7 +77,7 @@
       <div class="split__figure">
         <!-- Pattern dots derrière l'image -->
         <div class="pattern-layer pat-dots" style="inset: 40px; opacity: 0.4; z-index: 1;" data-parallax="0.03"></div>
-        <img src="img/penseur-laptop.png" alt="Le Penseur au laptop — statue classique avec ordinateur" data-parallax="0.04">
+        <img src="img/penseur-laptop.png" alt="Le Penseur au laptop — statue classique avec ordinateur" data-parallax="0.12" data-scale-scroll>
       </div>
       <div class="split__text">
         <div class="section-num-giant" data-parallax="0.06">II</div>
@@ -216,8 +216,9 @@
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
 
-    /* --- Parallax multicouche --- */
+    /* --- Parallax multicouche + scale-on-scroll --- */
     const parallaxEls = document.querySelectorAll('[data-parallax]');
+    const scaleEls = document.querySelectorAll('[data-scale-scroll]');
     let ticking = false;
     window.addEventListener('scroll', () => {
       if (!ticking) {
@@ -227,7 +228,16 @@
             const speed = parseFloat(el.dataset.parallax);
             const rect = el.getBoundingClientRect();
             const centerOffset = rect.top + rect.height / 2 - window.innerHeight / 2;
-            el.style.transform = `translateY(${centerOffset * speed * -1}px)`;
+            const translateY = centerOffset * speed * -1;
+            /* Figures avec scale progressif */
+            if (el.hasAttribute('data-scale-scroll')) {
+              const progress = Math.max(0, Math.min(1, 1 - rect.top / window.innerHeight));
+              const scale = 0.92 + progress * 0.12;
+              const baseRotate = el.closest('.split__figure') ? 1.5 : -2;
+              el.style.transform = `translateY(${translateY}px) scale(${scale}) rotate(${baseRotate}deg)`;
+            } else {
+              el.style.transform = `translateY(${translateY}px)`;
+            }
           });
           ticking = false;
         });

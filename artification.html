@@ -85,7 +85,7 @@
       </div>
       <div class="hero__figure">
         <div class="hero__figure-frame hero__figure-frame--offset pat-diag" style="opacity: 0.4;" data-parallax="0.03"></div>
-        <img src="img/muse-guitare.png" alt="Muse à la guitare — statue classique avec instrument" data-parallax="0.05">
+        <img src="img/muse-guitare.png" alt="Muse à la guitare — statue classique avec instrument" data-parallax="0.15" data-scale-scroll>
       </div>
     </div>
   </section>
@@ -210,7 +210,7 @@
     const parallaxEls = document.querySelectorAll('[data-parallax]');
     let ticking = false;
     window.addEventListener('scroll', () => {
-      if (!ticking) { requestAnimationFrame(() => { parallaxEls.forEach(el => { const speed = parseFloat(el.dataset.parallax); const rect = el.getBoundingClientRect(); const centerOffset = rect.top + rect.height / 2 - window.innerHeight / 2; el.style.transform = `translateY(${centerOffset * speed * -1}px)`; }); ticking = false; }); ticking = true; }
+      if (!ticking) { requestAnimationFrame(() => { parallaxEls.forEach(el => { const speed = parseFloat(el.dataset.parallax); const rect = el.getBoundingClientRect(); const centerOffset = rect.top + rect.height / 2 - window.innerHeight / 2; const ty = centerOffset * speed * -1; if (el.hasAttribute('data-scale-scroll')) { const p = Math.max(0, Math.min(1, 1 - rect.top / window.innerHeight)); const s = 0.92 + p * 0.12; el.style.transform = `translateY(${ty}px) scale(${s}) rotate(-2deg)`; } else { el.style.transform = `translateY(${ty}px)`; } }); ticking = false; }); ticking = true; }
     });
   </script>
 </body>
