@@ -386,7 +386,7 @@ a { color: inherit; text-decoration: none; }
 .marquee {
   overflow: hidden;
   white-space: nowrap;
-  padding: 32px 0;
+  padding: 16px 0;
   border-top: 1px solid rgba(26,26,26,0.06);
   border-bottom: 1px solid rgba(26,26,26,0.06);
   position: relative;
@@ -401,18 +401,18 @@ a { color: inherit; text-decoration: none; }
 }
 .marquee__item {
   font-family: 'Cinzel', serif;
-  font-size: clamp(24px, 3vw, 42px);
+  font-size: clamp(13px, 1.4vw, 20px);
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  padding: 0 48px;
+  letter-spacing: 0.18em;
+  padding: 0 28px;
   color: var(--noir-encre);
   display: flex;
   align-items: center;
-  gap: 48px;
+  gap: 28px;
 }
 .marquee--noir .marquee__item { color: rgba(245,242,236,0.15); }
 .marquee__sep {
-  width: 6px; height: 6px;
+  width: 4px; height: 4px;
   background: var(--rouge);
   border-radius: 0;
   flex-shrink: 0;
@@ -673,7 +673,7 @@ a { color: inherit; text-decoration: none; }
   .section { padding: 100px 24px; }
   .hero__inner { padding: 0 24px; }
   .split__text { padding: 48px 24px; }
-  .marquee__item { font-size: 20px; padding: 0 24px; gap: 24px; }
+  .marquee__item { font-size: 12px; padding: 0 16px; gap: 16px; }
   .section-num-giant { font-size: 80px; }
   .site-footer {
     flex-direction: column; gap: 20px;
